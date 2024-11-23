@@ -13,3 +13,9 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Assets that I don't have rights to distribute
+assets/
+
+# Mac OS
+.DS_Store
