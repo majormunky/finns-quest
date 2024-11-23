@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://w0j04rkyykxd"]
+
+[ext_resource type="Texture2D" uid="uid://fo5cjnsammbp" path="res://assets/timefantasy_characters/sheets/bonus1.png" id="1_xxegx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mq6hy"]
+radius = 7.0
+height = 16.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(95, 78)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 5)
+shape = SubResource("CapsuleShape2D_mq6hy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_xxegx")
+hframes = 12
+vframes = 8
+region_rect = Rect2(0, 0, 77.9171, 40)
