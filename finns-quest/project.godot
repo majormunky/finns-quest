@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="Finns Quest"
+run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=800
+window/stretch/mode="viewport"
+window/stretch/scale=4.0
+window/stretch/scale_mode="integer"
 
 [rendering]
 
