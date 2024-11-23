@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://w0j04rkyykxd"]
+[gd_scene load_steps=14 format=3 uid="uid://w0j04rkyykxd"]
 
+[ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_c4lku"]
 [ext_resource type="Texture2D" uid="uid://fo5cjnsammbp" path="res://assets/timefantasy_characters/sheets/bonus1.png" id="1_xxegx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mq6hy"]
@@ -170,6 +171,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(95, 78)
+script = ExtResource("1_c4lku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 5)
