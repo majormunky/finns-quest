@@ -21,7 +21,12 @@ func load_map(map_name):
 		current_map = null
 	
 	var new_map = maps[map_name].instantiate()
-	add_child(new_map)
+	# TODO: Fix this later, it causes an error just by adding child directly
+	# but if we call deferred, the map doesn't get added in time
+	# for the setup_teleporters call to run
+	call_deferred("add_child", new_map)
+	await get_tree().create_timer(0.1).timeout
+	# add_child(new_map)
 	
 	current_map = new_map
 	current_map.setup_teleporters()
