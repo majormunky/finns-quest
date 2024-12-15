@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://dow3bnflnlvas"]
+
+[ext_resource type="Texture2D" uid="uid://b8kvdvct1xr23" path="res://assets/rpg-ui-pack/UI assets (3x).png" id="1_e6c8g"]
+[ext_resource type="Script" path="res://scenes/UI/dialog.gd" id="1_sg56p"]
+[ext_resource type="FontFile" uid="uid://dkb752gy6j1vh" path="res://assets/glasstown-nbp-font/GlasstownNbpRegular-RyMM.ttf" id="2_qrf44"]
+
+[node name="Dialog" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 256
+script = ExtResource("1_sg56p")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_e6c8g")
+region_rect = Rect2(18, 18, 108, 108)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 41.0
+offset_right = 1112.0
+offset_bottom = 446.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_qrf44")
+theme_override_font_sizes/normal_font_size = 64
+text = "Welcome to a sample dialog box for Finn's Quest!"
+fit_content = true
