@@ -34,6 +34,8 @@ func _input(event: InputEvent) -> void:
 		if ui.dialog_active:
 			ui.hide_dialog()
 			ui.dialog_active = false
+			get_tree().paused = false
 		else:
 			ui.show_dialog("Welcome to Finn's Quest!")
 			ui.dialog_active = true
+			get_tree().paused = true

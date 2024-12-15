@@ -7,15 +7,18 @@
 [ext_resource type="Script" path="res://scenes/UI/ui.gd" id="4_k4vgs"]
 
 [node name="Main" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_y6ref")
 
 [node name="WorldManager" type="Node2D" parent="."]
 script = ExtResource("1_hg5s8")
 
 [node name="Player" parent="." instance=ExtResource("1_dm2v0")]
+process_mode = 1
 position = Vector2(171, 98)
 
 [node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
 script = ExtResource("4_k4vgs")
 
 [node name="Dialog" parent="UI" instance=ExtResource("4_8463i")]
