@@ -28,14 +28,24 @@ func _on_world_manager_map_loaded(map_name: Variant) -> void:
 	
 	# position player
 	player.position = player_pos
+	
+	# setup interactable signals
+	for node in get_tree().get_nodes_in_group("interactable"):
+		node.on_player_interaction.connect(on_player_interaction)
+
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Debug"):
+	if event.is_action_pressed("Inspect"):
 		if ui.dialog_active:
 			ui.hide_dialog()
-			ui.dialog_active = false
 			get_tree().paused = false
-		else:
-			ui.show_dialog("Welcome to Finn's Quest!")
-			ui.dialog_active = true
-			get_tree().paused = true
+			await get_tree().create_timer(0.1).timeout
+			ui.dialog_active = false
+
+
+func on_player_interaction(text: String) -> void:
+	print("Player interacted with something:" + text)
+	if ui.dialog_active == false:
+		ui.show_dialog(text)
+		ui.dialog_active = true
+		get_tree().paused = true
