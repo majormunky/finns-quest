@@ -4,8 +4,16 @@ var speed = 200
 var current_direction = "down"
 var is_moving = false
 @onready var animation_player = $AnimationPlayer
+@onready var interact_box = $Detection/InteractBox/CollisionShape2D
 
 func _physics_process(delta: float) -> void:
+	# check to see if we are hitting the interact button
+	if Input.is_action_just_pressed("Inspect"):
+		interact_box.disabled = false
+		await get_tree().create_timer(0.05).timeout
+		interact_box.disabled = true
+		return
+	
 	# figure out what direction the player is wanting to go
 	var input = Vector2.ZERO
 	
@@ -32,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	# and finally move the player on the screen
 	move_and_collide(velocity)
 
+
 func update_animation():
 	# This function checks the current direction and if we're moving
 	# and then plays the animation that matches
@@ -54,3 +63,7 @@ func get_player_direction(input_vector):
 		return "down"
 	elif input_vector.y < 0:
 		return "up"
+
+
+func _on_interact_box_area_entered(area: Area2D) -> void:
+	print("Area Entered:" + area.name)

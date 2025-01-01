@@ -1,11 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkyonepkaje1b"]
+[gd_scene load_steps=6 format=3 uid="uid://dkyonepkaje1b"]
 
+[ext_resource type="Script" path="res://scenes/objects/Sign.gd" id="1_kmme0"]
 [ext_resource type="Texture2D" uid="uid://b0iok0byqntwd" path="res://assets/fantasy-rpg-tileset-pack/TILESETS/desert.png" id="1_pi472"]
+[ext_resource type="PackedScene" uid="uid://cf2g5sn8rohnv" path="res://scenes/objects/Interactable.tscn" id="2_wyhag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s1iq"]
 size = Vector2(63, 63)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln3us"]
+size = Vector2(63, 63)
+
 [node name="Sign" type="StaticBody2D"]
+collision_layer = 513
+collision_mask = 513
+script = ExtResource("1_kmme0")
+sign_text = "This is some text"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
@@ -16,3 +25,11 @@ region_rect = Rect2(16, 16, 16, 16)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_6s1iq")
+
+[node name="Interactable" parent="." instance=ExtResource("2_wyhag")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_ln3us")
+
+[connection signal="interacted_with" from="Interactable" to="." method="_on_interactable_interacted_with"]

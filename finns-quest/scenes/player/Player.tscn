@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://w0j04rkyykxd"]
+[gd_scene load_steps=16 format=3 uid="uid://w0j04rkyykxd"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_c4lku"]
 [ext_resource type="Texture2D" uid="uid://fo5cjnsammbp" path="res://assets/timefantasy_characters/sheets/bonus1.png" id="1_xxegx"]
@@ -21,6 +21,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Detection/InteractBox:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_unfim"]
 resource_name = "idle_down"
@@ -36,6 +48,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Detection/InteractBox:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_2e657"]
@@ -104,6 +128,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Detection/InteractBox:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_4mg32"]
 resource_name = "walk_left"
@@ -120,6 +156,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [12, 13, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Detection/InteractBox:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
 }
 
 [sub_resource type="Animation" id="Animation_tv3pp"]
@@ -138,6 +186,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [24, 25, 26]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Detection/InteractBox:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.71239]
+}
 
 [sub_resource type="Animation" id="Animation_tchy0"]
 resource_name = "walk_up"
@@ -154,6 +214,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [36, 37, 38]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Detection/InteractBox:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3tjdv"]
@@ -172,6 +244,8 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_53mx0"]
 radius = 19.0
 height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_phpun"]
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -29)
@@ -200,3 +274,17 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
 position = Vector2(0, 23)
 shape = SubResource("CapsuleShape2D_53mx0")
+
+[node name="Detection" type="Node2D" parent="."]
+
+[node name="InteractBox" type="Area2D" parent="Detection"]
+collision_layer = 512
+collision_mask = 512
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection/InteractBox"]
+position = Vector2(0, 74)
+shape = SubResource("CircleShape2D_phpun")
+disabled = true
+
+[connection signal="area_entered" from="Detection/InteractBox" to="." method="_on_interact_box_area_entered"]
