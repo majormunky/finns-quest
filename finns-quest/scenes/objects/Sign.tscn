@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkyonepkaje1b"]
+
+[ext_resource type="Texture2D" uid="uid://b0iok0byqntwd" path="res://assets/fantasy-rpg-tileset-pack/TILESETS/desert.png" id="1_pi472"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6s1iq"]
+size = Vector2(63, 63)
+
+[node name="Sign" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_pi472")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_6s1iq")
